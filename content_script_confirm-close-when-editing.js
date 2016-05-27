@@ -11,3 +11,11 @@ window.addEventListener("beforeunload", evt => {
 		evt.returnValue = "編集中ですが閉じても良いですか？";
 	}
 });
+
+// テキストエリアのデフォルト表示にplaceholderではなくvalueを使われているので修正
+Array.from(document.querySelectorAll("textarea[title]")).forEach(textarea => {
+	textarea.placeholder = textarea.value;
+	textarea.value = "";
+	// 初期表示はどうやらtitle属性で管理しているらしい
+	textarea.title = "";
+});
