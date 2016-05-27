@@ -1,0 +1,22 @@
+﻿{
+    "name": "youRoomユーザースクリプト",
+    "version": "0.1",
+    "manifest_version": 2,
+    "description": "youRoomユーザースクリプト",
+
+    "permissions": [
+
+    ],
+
+    "content_scripts": [
+        {
+            "matches": [
+                "https://www.youroom.in/r/*"
+            ],
+            "js": [
+                // tagのリンク化
+                "content_script_tag-to-link.js"
+            ]
+        }
+    ]
+}
