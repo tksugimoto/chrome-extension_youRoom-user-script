@@ -9,7 +9,7 @@ if (location.pathname.match(/(^\/r\/\d+)/)) {
                     var html = content.innerHTML;
         //            content.innerHTML = html.replace(/#[a-z_]+(?=[^<>]*(?:$|<\/p>|<br>))/ig, function (tagText){
                     content.innerHTML = html.replace(/#[^\s<>]+(?=[^<>]*(?:$|<\/p>|<br>))/ig, function (tagText){
-                        return '<a href="' + roomPath + '?search_query=' + encodeURIComponent(tagText) + '">' + tagText + '</a>';
+                        return '<a href="' + roomPath + '?flat=flat&search_query=' + encodeURIComponent(tagText) + '">' + tagText + '</a>';
                     });
                 }
             }
