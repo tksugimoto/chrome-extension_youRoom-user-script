@@ -2,11 +2,7 @@
     "name": "youRoomユーザースクリプト",
     "version": "0.1",
     "manifest_version": 2,
-    "description": "youRoomユーザースクリプト",
-
-    "permissions": [
-
-    ],
+    "description": "タグをリンク化・編集中の場合は閉じるときに確認",
 
     "content_scripts": [
         {
@@ -14,9 +10,7 @@
                 "https://www.youroom.in/r/*"
             ],
             "js": [
-                // 編集中の場合うっかり閉じたり更新しないように確認画面を出す
                 "content_script_confirm-close-when-editing.js",
-                // tagのリンク化
                 "content_script_tag-to-link.js"
             ]
         }
