@@ -4,14 +4,34 @@ if (location.pathname.match(/(^\/r\/\d+)/)) {
     function changeTagText2Link(elems){
         Array.prototype.forEach.call(elems, function (elem){
             if (elem.querySelector) {
-                var content = elem.querySelector(".content");
-                if (content) {
-                    var html = content.innerHTML;
-        //            content.innerHTML = html.replace(/#[a-z_]+(?=[^<>]*(?:$|<\/p>|<br>))/ig, function (tagText){
-                    content.innerHTML = html.replace(/#[^\s<>]+(?=[^<>]*(?:$|<\/p>|<br>))/ig, function (tagText){
-                        return '<a href="' + roomPath + '?flat=flat&search_query=' + encodeURIComponent(tagText) + '">' + tagText + '</a>';
-                    });
-                }
+                elem.querySelectorAll(".content p.simple_format").forEach(content => {
+					content.childNodes.forEach(node => {
+						if (node instanceof Text) {
+							var texts = node.textContent.split(/(#[^\s<>]+)/);
+							if (texts.length !== 1) {
+								texts.filter(text => {
+									return text !== "";
+								}).map(text => {
+									if (text[0] === "#") {
+										var a = document.createElement("a");
+										a.href = `${roomPath}?flat=flat&search_query=${encodeURIComponent(text)}`;
+										a.innerText = text;
+										return a;
+									} else {
+										return document.createTextNode(text);
+									}
+								}).reduceRight((previousValue, currentValue, index) => {
+									if (previousValue === null) {
+										node.parentNode.replaceChild(currentValue, node);
+									} else {
+										previousValue.parentNode.insertBefore(currentValue, previousValue);
+									}
+									return currentValue;
+								}, null);
+							}
+						}
+					});
+                });
             }
         });
     }
