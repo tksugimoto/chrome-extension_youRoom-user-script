@@ -10,7 +10,7 @@
     "content_scripts": [
         {
             "matches": [
-                "https://www.youroom.in/r/*"
+                "https://www.youroom.in/*"
             ],
             "js": [
                 "content_script_confirm-close-when-editing.js",
