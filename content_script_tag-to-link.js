@@ -1,10 +1,10 @@
 
 if (location.pathname.match(/(^\/r\/\d+)/)) {
-    var roomPath = RegExp.$1;
-    function changeTagText2Link(elems){
-        Array.prototype.forEach.call(elems, function (elem){
-            if (elem.querySelector) {
-                elem.querySelectorAll(".content p.simple_format").forEach(content => {
+	var roomPath = RegExp.$1;
+	function changeTagText2Link(elems){
+		Array.prototype.forEach.call(elems, function (elem){
+			if (elem.querySelector) {
+				elem.querySelectorAll(".content p.simple_format").forEach(content => {
 					content.childNodes.forEach(node => {
 						if (node instanceof Text) {
 							var texts = node.textContent.split(/(#[^\s<>]+)/);
@@ -31,21 +31,21 @@ if (location.pathname.match(/(^\/r\/\d+)/)) {
 							}
 						}
 					});
-                });
-            }
-        });
-    }
+				});
+			}
+		});
+	}
 
-    changeTagText2Link(document.querySelectorAll(".entry-container, .comment-area"));
+	changeTagText2Link(document.querySelectorAll(".entry-container, .comment-area"));
 
-    var entryContainer = document.getElementById("entries-container");
-    if (entryContainer) {
-        new MutationObserver(function (mutationRecords){
-            mutationRecords.forEach(function (mutationRecord){
-                changeTagText2Link(mutationRecord.addedNodes);
-            });
-        }).observe(entryContainer, {
-        	childList: true
-        });
-    }
+	var entryContainer = document.getElementById("entries-container");
+	if (entryContainer) {
+		new MutationObserver(function (mutationRecords){
+			mutationRecords.forEach(function (mutationRecord){
+				changeTagText2Link(mutationRecord.addedNodes);
+			});
+		}).observe(entryContainer, {
+			childList: true
+		});
+	}
 }
