@@ -9,6 +9,8 @@
 		* 検索機能はルームごとであるため、複数のルームが混ざるトップページでは困難
 * 編集中の場合は閉じるときに確認
 	* 対象ページ：全ページ
+* コメントの投稿日時部分を各コメントへの直リンクに変更
+	* 対象ページ：各スレッドページのみ
 
 # Chromeウェブストア
 https://chrome.google.com/webstore/detail/hcknllhnomokgnbanpnaldgbljfgjlhg
